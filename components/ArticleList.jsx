@@ -17,7 +17,6 @@ const ArticleList = () => {
 
     return (
     <ul className="article-list-container">
-        <p>Here's your articles</p>
         {articles.map((article) => {
             return <ArticleCard key={article.article_id} article={article}/>
         })}
