@@ -1,8 +1,8 @@
 import './App.css'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import ArticleList from '../components/ArticleList'
-import ArticleView from '../components/ArticleView'
+import Header from '../src/components/Header'
+import Footer from '../src/components/Footer'
+import ArticleList from '../src/components/ArticleList'
+import ArticleView from '../src/components/ArticleView'
 import {Routes, Route} from 'react-router'
 
 function App () {

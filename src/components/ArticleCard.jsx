@@ -16,6 +16,7 @@ const ArticleCard = ({article}) => {
                 sx={{ height: 140 }}
                 image={article.article_img_url}
                 title={article.title}
+                component='img'
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -32,7 +33,6 @@ const ArticleCard = ({article}) => {
                 <Button size="small">+1 Vote</Button>
                 <Button size="small">{article.comment_count} Comments</Button>
                 <Button size="small"><Link to={`/article/${article.article_id}`}>Read more</Link></Button>
-                
             </CardActions>
             </Card>
         </>

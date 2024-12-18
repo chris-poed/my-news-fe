@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getArticles } from "../utils/api"
-import ArticleCard from "./ArticleCard"
+import ArticleCard from "../components/ArticleCard"
 import * as React from 'react';
 import Grid2 from '@mui/material/Grid';
 import Box from '@mui/material/Box';
