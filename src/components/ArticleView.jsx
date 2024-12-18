@@ -12,6 +12,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import CommentsList from './CommentsList'
 import Collapsible from './Collapsible'
+import VoteHandler from './VoteHandler'
 
 const ArticleView = () => {
 
@@ -68,6 +69,7 @@ const ArticleView = () => {
                 />
                 <h1>{ article.title }</h1>
                 <p>By { article.author }</p>
+                <VoteHandler article={article}/>
                 <Button size="small">+1 Vote</Button>
                 <p>{ article.vote_count}</p>
                 <p>{ article.body }</p>
