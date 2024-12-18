@@ -16,6 +16,7 @@ const ArticleCard = ({article}) => {
                 sx={{ height: 140 }}
                 image={article.article_img_url}
                 title={article.title}
+                component='img'
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">

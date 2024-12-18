@@ -4,12 +4,13 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react"
-import { getArticle } from '../utils/api'
+import { getArticle, getComments } from '../utils/api'
 import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 import { Link } from 'react-router'
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import CommentsList from '../components/CommentsList'
 
 const ArticleView = () => {
 
@@ -49,12 +50,13 @@ const ArticleView = () => {
         <React.Fragment>
         <CssBaseline />
             <Container maxWidth="md">
-                <Box sx={{ height: '100vh' }}>
+                <Box sx={{ height: 'auto' }}>
                 <Button size="small"><Link to={`/`}>Back to articles</Link></Button>
                 <CardMedia
                     sx={{ height: 400 }}
                     image={article.article_img_url}
                     title={article.title}
+                    component='img'
                 />
                 <h1>{ article.title }</h1>
                 <p>By { article.author }</p>
@@ -64,7 +66,9 @@ const ArticleView = () => {
                 <p>{ article.body }</p>
                 </Box>
             </Container>
+            <CommentsList />
         </React.Fragment>
+        
     );
 
 }
