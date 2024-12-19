@@ -70,7 +70,6 @@ const ArticleView = () => {
                 <h1>{ article.title }</h1>
                 <p>By { article.author }</p>
                 <VoteHandler article={article}/>
-                <Button size="small">+1 Vote</Button>
                 <p>{ article.vote_count}</p>
                 <p>{ article.body }</p>
                 </Box>
