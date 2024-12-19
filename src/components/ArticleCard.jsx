@@ -6,12 +6,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router'
+import VoteHandler from './VoteHandler';
 
 
 const ArticleCard = ({article}) => {
     return (
         <>
-            <Card sx={{ width: 345 }}>
+            <Card sx={{ width: 400 }}>
             <CardMedia
                 sx={{ height: 140 }}
                 image={article.article_img_url}
@@ -30,7 +31,7 @@ const ArticleCard = ({article}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">+1 Vote</Button>
+                <VoteHandler article={article}/>
                 <Button size="small">{article.comment_count} Comments</Button>
                 <Button size="small"><Link to={`/article/${article.article_id}`}>Read more</Link></Button>
             </CardActions>
