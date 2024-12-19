@@ -34,6 +34,7 @@ export const getComments = (article_id) => {
     })
 }
 
-export const postVote = (article_id) => {
-    return newsApi.patch(`/articles/${article_id}`, {inc_votes: 1})
+export const postVote = (article_id, vote) => {
+    console.log(vote, "<----vote in api")
+    return newsApi.patch(`/articles/${article_id}`, {inc_votes: vote})
 }
