@@ -18,7 +18,6 @@ const ArticleView = () => {
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { article_id } = useParams();
-  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,12 +26,6 @@ const ArticleView = () => {
       setIsLoading(false);
     });
   }, []);
-
-  useEffect(() => {
-    getComments(article_id).then(({ comments }) => {
-      setComments(comments);
-    });
-  }, [setComments]);
 
   if (isLoading) {
     return (
@@ -72,7 +65,7 @@ const ArticleView = () => {
           <p>{article.body}</p>
         </Box>
         <Collapsible contentDescriptor={` ${article.comment_count} comments`}>
-          <CommentsList comments={comments} article_id={article_id} setComments={setComments}/>
+          <CommentsList article_id={article_id} />
         </Collapsible>
       </Container>
     </React.Fragment>
