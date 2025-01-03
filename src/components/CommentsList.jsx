@@ -1,28 +1,13 @@
-import { UserContext } from "../contexts/UserContext";
-import { useEffect, useState, useContext } from "react";
-import { getComments, postComment } from "../utils/api";
+import { useEffect, useState } from "react";
+import { getComments } from "../utils/api";
 import Divider from "@mui/material/Divider";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import handleSubmit from './CommentsForm'
+import CommentsForm from './CommentsForm'
+
+
 
 const CommentsList = ({ article_id }) => {
-  const { user } = useContext(UserContext);
   const [comments, setComments] = useState([]);
-  const [commentToPost, setCommentToPost] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    postComment(article_id, {
-      username: user.username,
-      body: commentToPost,
-    });
-    setCommentToPost("");
-  };
-
-  const handleInput = (e) => {
-    e.preventDefault();
-    setCommentToPost(e.target.value);
-  };
 
   useEffect(() => {
     getComments(article_id).then(({ comments }) => {
@@ -32,21 +17,7 @@ const CommentsList = ({ article_id }) => {
 
   return (
     <ul>
-      <form onSubmit={handleSubmit}>
-        <p>Posting as {user.username}:</p>
-        <TextField
-          name="body"
-          fullWidth
-          required
-          id="outlined-required"
-          label="Type your comment"
-          onChange={handleInput}
-          value={commentToPost}
-        />
-        <Button type="submit" size="small">
-          Submit
-        </Button>
-      </form>
+      <CommentsForm setComments={setComments} article_id={article_id}/>
       {comments.map((comment) => {
         return (
           <div key={comment.comment_id}>
@@ -64,3 +35,72 @@ const CommentsList = ({ article_id }) => {
 };
 
 export default CommentsList;
+
+
+/* 
+
+// Attempted to add the useOptimistic react hook, but causes a 'not a function' 
+// error which prevents the page from rendering
+
+const CommentsList = ({ article_id }) => {
+  const [comments, setComments] = useState([]);
+   const [optimisticComments, addOptimisticComment] = useOptimistic(comments); 
+  const { user } = useContext(UserContext);
+
+  const [commentInput, setCommentInput] = useState("");
+  const [currentDateTime, setCurrentDateTime] = useState(
+    new Date().toISOString()
+  );
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setCommentInput(e.target.value);
+  };
+
+  const newComment = {
+    username: user.username,
+    body: commentInput,
+  };
+
+  const handlePostComment = async (newComment) => {
+    addOptimisticComment(newComment);
+    try {
+      await PostComment(newComment);
+    } catch (error) {
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment !== newComment)
+      );
+    }
+    setCommentInput("");
+  };
+
+  useEffect(() => {
+    getComments(article_id).then(({ comments }) => {
+      setComments(comments);
+    });
+  }, [handlePostComment]);
+
+
+
+  return (
+    <ul>
+      <CommentsForm handlePostComment={handlePostComment} />
+      {comments.map((comment) => {
+        return (
+          <div key={comment.comment_id}>
+            <p>
+              Posted by {comment.author} at{" "}
+              {comment.created_at ? comment.created_at : currentDateTime}
+            </p>
+            <p>{comment.body}</p>
+            <p>{comment.votes} votes</p>
+            <Divider variant="inset" />
+          </div>
+        );
+      })}
+    </ul>
+  );
+}; */
+
+
+

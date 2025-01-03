@@ -49,6 +49,4 @@ export const postVote = (article_id, vote) => {
 export const postComment = (article_id, body) => {
   return newsApi
     .post(`/articles/${article_id}/comments`, body)
-    .then((response) => {})
-    .catch((error) => {});
 };
