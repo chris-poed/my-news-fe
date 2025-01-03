@@ -1,13 +1,50 @@
-import { UserContext } from "../contexts/UserContext";
-import { useEffect, useState, useContext, useOptimistic } from "react";
-import { getComments, postComment } from "../utils/api";
+import { useEffect, useState } from "react";
+import { getComments } from "../utils/api";
 import Divider from "@mui/material/Divider";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import handleSubmit from './CommentsForm'
+import CommentsForm from './CommentsForm'
+
+
 
 const CommentsList = ({ article_id }) => {
   const [comments, setComments] = useState([]);
-  const [optimisticComments, addOptimisticComment] = useOptimistic(comments);
+
+  useEffect(() => {
+    getComments(article_id).then(({ comments }) => {
+      setComments(comments);
+    });
+  }, [handleSubmit]);
+
+  return (
+    <ul>
+      <CommentsForm setComments={setComments} article_id={article_id}/>
+      {comments.map((comment) => {
+        return (
+          <div key={comment.comment_id}>
+            <p>
+              Posted by {comment.author} at {comment.created_at}
+            </p>
+            <p>{comment.body}</p>
+            <p>{comment.votes} votes</p>
+            <Divider variant="inset" />
+          </div>
+        );
+      })}
+    </ul>
+  );
+};
+
+export default CommentsList;
+
+
+/* 
+
+// Attempted to add the useOptimistic react hook, but causes a 'not a function' 
+// error which prevents the page from rendering
+
+const CommentsList = ({ article_id }) => {
+  const [comments, setComments] = useState([]);
+   const [optimisticComments, addOptimisticComment] = useOptimistic(comments); 
   const { user } = useContext(UserContext);
 
   const [commentInput, setCommentInput] = useState("");
@@ -43,33 +80,12 @@ const CommentsList = ({ article_id }) => {
     });
   }, [handlePostComment]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    postComment(article_id, {
-      username: user.username,
-      body: commentInput,
-    });
-    setCommentInput("");
-  };
+
 
   return (
     <ul>
-      <form onSubmit={handlePostComment}>
-        <p>Posting as {user.username}:</p>
-        <TextField
-          name="body"
-          fullWidth
-          required
-          id="outlined-required"
-          label="Type your comment"
-          onChange={handleInput}
-          value={commentInput}
-        />
-        <Button type="submit" size="small">
-          Submit
-        </Button>
-      </form>
-      {optimisticComments.map((comment) => {
+      <CommentsForm handlePostComment={handlePostComment} />
+      {comments.map((comment) => {
         return (
           <div key={comment.comment_id}>
             <p>
@@ -84,80 +100,7 @@ const CommentsList = ({ article_id }) => {
       })}
     </ul>
   );
-};
+}; */
 
-/*
 
-const CommentsList = ({ article_id }) => {
-  const { user } = useContext(UserContext);
-  const [comments, setComments] = useState([]);
-  const [commentInput, setCommentInput] = useState("");
-  const [newComment, setNewPost] = useState("");
-  const [currentDateTime, setCurrentDateTime] = useState(
-    new Date().toISOString()
-  );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    postComment(article_id, {
-      username: user.username,
-      body: commentInput,
-    });
-    setCommentInput("");
-  };
-
-  const handleInput = (e) => {
-    e.preventDefault();
-    setCommentInput(e.target.value);
-  };
-
-  useEffect(() => {
-    getComments(article_id).then(({ comments }) => {
-      setComments(comments);
-    });
-  }, [handleSubmit]);
-
-  return (
-    <ul>
-      <form onSubmit={handleSubmit}>
-        <p>Posting as {user.username}:</p>
-        <TextField
-          name="body"
-          fullWidth
-          required
-          id="outlined-required"
-          label="Type your comment"
-          onChange={handleInput}
-          value={commentInput}
-        />
-        <Button type="submit" size="small">
-          Submit
-        </Button>
-      </form>
-      <div>
-        <p>
-          Posted by {user.username} at {currentDateTime}
-        </p>
-        <p>a test comment</p>
-        <p>test votes</p>
-        <Divider variant="inset" />
-      </div>
-      {comments.map((comment) => {
-        return (
-          <div key={comment.comment_id}>
-            <p>
-              Posted by {comment.author} at {comment.created_at}
-            </p>
-            <p>{comment.body}</p>
-            <p>{comment.votes} votes</p>
-            <Divider variant="inset" />
-          </div>
-        );
-      })}
-    </ul>
-  );
-};
-
-*/
-
-export default CommentsList;
