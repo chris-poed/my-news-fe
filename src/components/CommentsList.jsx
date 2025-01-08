@@ -3,6 +3,7 @@ import { getComments } from "../utils/api";
 import Divider from "@mui/material/Divider";
 import handleSubmit from './CommentsForm'
 import CommentsForm from './CommentsForm'
+import Paper from '@mui/material/Paper';
 
 
 
@@ -24,7 +25,9 @@ const CommentsList = ({ article_id }) => {
             <p>
               Posted by {comment.author} at {comment.created_at}
             </p>
+            <Paper className="comment-card-body">
             <p>{comment.body}</p>
+            </Paper>
             <p>{comment.votes} votes</p>
             <Divider variant="inset" />
           </div>
