@@ -47,7 +47,7 @@ const ArticleView = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="md">
+      <Container maxWidth="sm">
         <Box sx={{ height: "auto" }}>
           <Button size="small">
             <Link to={`/`}>Back to articles</Link>
