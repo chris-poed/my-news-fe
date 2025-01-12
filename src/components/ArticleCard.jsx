@@ -37,8 +37,10 @@ const ArticleCard = ({article}) => {
                 <IconButton aria-label="comments">
           <CommentIcon />
         </IconButton>
-        <Typography>{article.comment_count}</Typography>
-                <Button size="small"><Link to={`/article/${article.article_id}`}>Read more</Link></Button>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                {article.comment_count}
+                </Typography>
+                <Button size="small" variant="contained" href={`/article/${article.article_id}`}>Read more</Button>
             </CardActions>
             </Card>
         </>

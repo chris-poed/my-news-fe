@@ -13,13 +13,13 @@ import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 export default function CommentCard({comment}) {
-  const authorFirstLetter = Array.from(comment.author)[0]
+  const authorfirstletter = Array.from(comment.author)[0]
   return (
     <Card sx={{ maxWidth: 'sm', mb: 2 }}>
-      <CardHeader authorFirstLetter={authorFirstLetter}
+      <CardHeader authorfirstletter={authorfirstletter}
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            <>{authorFirstLetter}</>
+            <>{authorfirstletter}</>
           </Avatar>
         }
         action={
@@ -38,7 +38,6 @@ export default function CommentCard({comment}) {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-
         </IconButton>
                   <Typography>{comment.votes} votes</Typography>
         <IconButton aria-label="share">

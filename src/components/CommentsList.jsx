@@ -21,7 +21,7 @@ const CommentsList = ({ article_id }) => {
 
       {comments.map((comment) => {
         return (
-          <CommentCard comment={comment} sx={{margin: 30}}/>
+          <CommentCard key={comment.comment_id} comment={comment} sx={{margin: 30}}/>
         );
       })}
     </ul>

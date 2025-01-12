@@ -12,10 +12,13 @@ import IconButton from '@mui/material/IconButton';
 import { red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+
+
 const CommentsForm = ({ article_id, setComments }) => {
 
   const { user } = useContext(UserContext);
   const [commentInput, setCommentInput] = useState("");
+  const authorFirstLetter = Array.from(user.username)[0]
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +40,7 @@ const CommentsForm = ({ article_id, setComments }) => {
     setCommentInput(e.target.value);
   };
 
-  const authorFirstLetter = Array.from(user.username)[0]
+  
 
     return (
       <Card sx={{ maxWidth: 'sm', mb: 2 }}>
