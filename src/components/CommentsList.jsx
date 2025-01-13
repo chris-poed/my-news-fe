@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getComments } from "../utils/api";
-import Divider from "@mui/material/Divider";
 import handleSubmit from './CommentsForm'
 import CommentsForm from './CommentsForm'
-
-
+import CommentCard from './CommentCard'
+import { Container } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const CommentsList = ({ article_id }) => {
   const [comments, setComments] = useState([]);
@@ -17,17 +17,11 @@ const CommentsList = ({ article_id }) => {
 
   return (
     <ul>
-      <CommentsForm setComments={setComments} article_id={article_id}/>
+      <CommentsForm setComments={setComments} article_id={article_id} sx={{margin: 10}}/>
+
       {comments.map((comment) => {
         return (
-          <div key={comment.comment_id}>
-            <p>
-              Posted by {comment.author} at {comment.created_at}
-            </p>
-            <p>{comment.body}</p>
-            <p>{comment.votes} votes</p>
-            <Divider variant="inset" />
-          </div>
+          <CommentCard key={comment.comment_id} comment={comment} sx={{margin: 30}}/>
         );
       })}
     </ul>
