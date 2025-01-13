@@ -1,13 +1,20 @@
 import { useContext } from "react";
 import { UserContext, UserProvider } from "../contexts/UserContext";
+import { Typography, Box } from "@mui/material";
 
 const Header = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <header>
-      <h1>Welcome to your news, {user.name}</h1>
-    </header>
+<Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+
+<Typography variant="h2">
+      Welcome to your news, {user.name}
+    </Typography>
+
+</Box>
+
+
   );
 };
 

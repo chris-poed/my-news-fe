@@ -1,10 +1,17 @@
-
+import { Typography, Box } from "@mui/material";
 
 const Footer = () => {
+
+
+
     return (
-        <footer>
-            <p>Copyright chris-poed 2024</p>
-        </footer>
+<Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+
+<Typography variant='h5'>
+    Copyright chris-poed 2024
+</Typography>
+
+</Box>
     )
 }
 
