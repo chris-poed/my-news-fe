@@ -14,7 +14,15 @@ import Box from "@mui/material/Box";
 const ArticleCard = ({ article }) => {
   return (
     <>
-      <Card sx={{ width: 400, margin: 3 }}>
+      <Card
+        sx={{
+          width: 400,
+          marginTop: 3,
+          marginLeft: 1.5,
+          marginRight: 1.5,
+          marginBottom: 3,
+        }}
+      >
         <CardMedia
           sx={{ height: 100 }}
           image={article.article_img_url}

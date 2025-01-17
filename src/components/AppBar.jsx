@@ -122,7 +122,7 @@ function NewsAppBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            MY NEWS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {topics.map((page) => (

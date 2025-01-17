@@ -10,7 +10,13 @@ import AppBar from "./components/AppBar";
 function App() {
   return (
     <Box
-      sx={{ display: "flex", flexDirection: "column", alignContent: "center" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        paddingLeft: 0.5,
+        paddingRight: 0.5,
+      }}
     >
       <AppBar />
       <Routes>
