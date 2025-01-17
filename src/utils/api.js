@@ -47,6 +47,11 @@ export const postVote = (article_id, vote) => {
 };
 
 export const postComment = (article_id, body) => {
-  return newsApi
-    .post(`/articles/${article_id}/comments`, body)
+  return newsApi.post(`/articles/${article_id}/comments`, body);
+};
+
+export const getTopics = () => {
+  return newsApi.get(`/topics`).then((response) => {
+    return response.data;
+  });
 };
