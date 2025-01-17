@@ -40,13 +40,12 @@ const ArticleCard = ({ article }) => {
             <IconButton aria-label="comments">
               <CommentIcon />
               <Typography
-              variant="body2"
-              sx={{ color: "text.secondary", padding: 1 }}
-            >
-              {article.comment_count}
-            </Typography>
+                variant="body2"
+                sx={{ color: "text.secondary", padding: 1 }}
+              >
+                {article.comment_count}
+              </Typography>
             </IconButton>
-
           </Box>
           <Box>
             {" "}
