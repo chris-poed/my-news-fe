@@ -117,10 +117,7 @@ function NewsAppBar() {
                     )
                   )}
                 </List> */}
-                <Typography
-                  variant="subtitle1"
-                  sx={{ margin: 1, marginLeft: 2 }}
-                >
+                <Typography variant="subtitle1" sx={{ margin: 2 }}>
                   Topics
                 </Typography>
                 <Divider />
