@@ -7,7 +7,7 @@ Welcome to My News - a full-stack community-driven news website to showcase the 
 
 ## Project overview
 
-My News is a community-driven news website, enabling users to:
+My News is a community-driven news website, enabling users to engage with each other through articles and comments. Key features include:
 
 - View a list of articles sorted by topic, votes, comment count and sorted by date
 - Read and add comments to articles
