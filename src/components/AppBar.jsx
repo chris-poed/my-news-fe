@@ -17,8 +17,6 @@ import { useEffect, useState } from "react";
 
 import { useContext } from "react";
 import { UserContext, UserProvider } from "../contexts/UserContext";
-import SideDrawer from "./SideDrawer";
-
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
