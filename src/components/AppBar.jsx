@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -103,36 +104,37 @@ function NewsAppBar() {
                 role="presentation"
                 onClick={toggleDrawer(false)}
               >
-                {/*                 <List>
-                  {["Inbox", "Starred", "Send email", "Drafts"].map(
-                    (text, index) => (
-                      <ListItem key={text} disablePadding>
+                <Link to={`/`} style={{ textDecoration: "none" }}>
+                  <ListItemButton>
+                    <ListItemText
+                      primary="All articles"
+                      sx={{ marginTop: 2, marginBottom: 2 }}
+                    />
+                  </ListItemButton>
+                </Link>
+                <Divider />
+                <Typography
+                  variant="subtitle1"
+                  sx={{ margin: 2, marginBottom: 0 }}
+                >
+                  Topics
+                </Typography>
+
+                <List>
+                  {topics.map((topic, index) => (
+                    <ListItem key={index} disablePadding>
+                      <Link to={`/${topic}`} style={{ textDecoration: "none" }}>
                         <ListItemButton>
                           <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                           </ListItemIcon>
-                          <ListItemText primary={text} />
+                          <ListItemText primary={topic} />
                         </ListItemButton>
-                      </ListItem>
-                    )
-                  )}
-                </List> */}
-                <Typography variant="subtitle1" sx={{ margin: 2 }}>
-                  Topics
-                </Typography>
-                <Divider />
-                <List>
-                  {topics.map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                      </ListItemButton>
+                      </Link>
                     </ListItem>
                   ))}
                 </List>
+                <Divider />
               </Box>
             </Drawer>
           </Box>
@@ -156,14 +158,32 @@ function NewsAppBar() {
             MY NEWS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {topics.map((page) => (
+            <Link to={`/`} style={{ textDecoration: "none" }}>
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  underline: "none",
+                }}
               >
-                {page}
+                All articles
               </Button>
+            </Link>
+            {topics.map((topic) => (
+              <Link
+                to={`/${topic}`}
+                style={{ textDecoration: "none" }}
+                key={topic}
+              >
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {topic}
+                </Button>
+              </Link>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>

@@ -8,18 +8,20 @@ import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
+import { useParams } from "react-router-dom";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  let { topic } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles().then(({ articles }) => {
+    getArticles(topic).then(({ articles }) => {
       setArticles(articles);
       setIsLoading(false);
     });
-  }, []);
+  }, [topic]);
 
   if (isLoading) {
     return (
@@ -53,7 +55,13 @@ const ArticleList = () => {
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
       {articles.map((article) => {
-        return <ArticleCard key={article.article_id} article={article} />;
+        return (
+          <ArticleCard
+            key={article.article_id}
+            article={article}
+            topic={topic}
+          />
+        );
       })}
     </Box>
   );

@@ -11,7 +11,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article, topic }) => {
   return (
     <>
       <Card
@@ -61,6 +61,7 @@ const ArticleCard = ({ article }) => {
               size="small"
               variant="contained"
               href={`/article/${article.article_id}`}
+              topic={topic}
             >
               Read more
             </Button>
