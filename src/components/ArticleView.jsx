@@ -14,7 +14,7 @@ import CommentsList from "./CommentsList";
 import Collapsible from "./Collapsible";
 import VoteHandler from "./VoteHandler";
 
-const ArticleView = () => {
+const ArticleView = (topic) => {
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { article_id } = useParams();
@@ -50,7 +50,11 @@ const ArticleView = () => {
       <Container maxWidth="sm">
         <Box sx={{ height: "auto" }}>
           <Button size="small">
-            <Link to={`/`}>Back to articles</Link>
+            {topic ? (
+              <Link to={`/`}>Back to articles</Link>
+            ) : (
+              <Link to={`/${topic}`}>Back to articles</Link>
+            )}
           </Button>
           <CardMedia
             sx={{ height: 400 }}
