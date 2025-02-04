@@ -53,17 +53,22 @@ const ArticleList = () => {
   }
 
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-      {articles.map((article) => {
-        return (
-          <ArticleCard
-            key={article.article_id}
-            article={article}
-            topic={topic}
-          />
-        );
-      })}
-    </Box>
+    <>
+      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        <Typography variant="h6">Topic</Typography>
+      </Box>
+      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        {articles.map((article) => {
+          return (
+            <ArticleCard
+              key={article.article_id}
+              article={article}
+              topic={topic}
+            />
+          );
+        })}
+      </Box>
+    </>
   );
 };
 
