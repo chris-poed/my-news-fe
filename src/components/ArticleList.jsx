@@ -8,11 +8,15 @@ import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import NativeSelect from "@mui/material/NativeSelect";
 import { useParams } from "react-router-dom";
 
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedSort, setSelectedSort] = useState("date");
   let { topic } = useParams();
 
   useEffect(() => {
@@ -54,8 +58,31 @@ const ArticleList = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-        <Typography variant="h6">Topic</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "right",
+          marginTop: 3,
+          marginRight: 3,
+        }}
+      >
+        <FormControl size="small">
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            Sort by
+          </InputLabel>
+          <NativeSelect
+            defaultValue={10}
+            inputProps={{
+              name: "date",
+              id: "uncontrolled-native",
+            }}
+          >
+            <option value="date">Date (default)</option>
+            <option value="votes">Votes</option>
+            <option value="comments">Comments</option>
+          </NativeSelect>
+        </FormControl>
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {articles.map((article) => {
