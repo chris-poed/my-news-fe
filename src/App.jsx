@@ -21,7 +21,9 @@ function App() {
       <AppBar />
       <Routes>
         <Route path="/" element={<ArticleList />} />
+        <Route path="/:sort" element={<ArticleList />} />
         <Route path="/:topic" element={<ArticleList />} />
+        <Route path="/:topic/:sort" element={<ArticleList />} />
         <Route path="/article/:article_id" element={<ArticleView />} />
         {/*   <Route path="/:topic" element={<ArticleList />} /> */}
       </Routes>
