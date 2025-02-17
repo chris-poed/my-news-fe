@@ -6,11 +6,13 @@ const newsApi = axios.create({
   baseURL: "https://my-news-2.onrender.com/api",
 });
 
-export const getArticles = (topic) => {
+export const getArticles = (topic, sort) => {
+  console.log(sort, "<----sort in API");
   return newsApi
     .get("/articles", {
       params: {
         topic: topic,
+        sort: sort,
       },
     })
     .then((response) => {
