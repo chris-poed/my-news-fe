@@ -18,14 +18,20 @@ const ArticleList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedSort, setSelectedSort] = useState("date");
   let { topic } = useParams();
+  console.log(selectedSort, "<----selectedSort");
+
+  const handleSort = (event) => {
+    console.log(event.target.value);
+    setSelectedSort(event.target.value);
+  };
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic).then(({ articles }) => {
+    getArticles(topic, selectedSort).then(({ articles }) => {
       setArticles(articles);
       setIsLoading(false);
     });
-  }, [topic]);
+  }, [topic, selectedSort]);
 
   if (isLoading) {
     return (
@@ -68,14 +74,15 @@ const ArticleList = () => {
         }}
       >
         <FormControl size="small">
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          <InputLabel variant="standard" htmlFor="sort-selector">
             Sort by
           </InputLabel>
           <NativeSelect
-            defaultValue={10}
+            value={selectedSort}
+            onChange={handleSort}
             inputProps={{
-              name: "date",
-              id: "uncontrolled-native",
+              name: "sort",
+              id: "sort-selector",
             }}
           >
             <option value="date">Date (default)</option>
