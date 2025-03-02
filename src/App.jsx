@@ -6,6 +6,7 @@ import ArticleView from "../src/components/ArticleView";
 import { Routes, Route } from "react-router";
 import Box from "@mui/material/Container";
 import AppBar from "./components/AppBar";
+import AboutPage from "./components/AboutPage";
 
 function App() {
   return (
@@ -21,11 +22,9 @@ function App() {
       <AppBar />
       <Routes>
         <Route path="/" element={<ArticleList />} />
-        <Route path="/:sort" element={<ArticleList />} />
         <Route path="/:topic" element={<ArticleList />} />
-        <Route path="/:topic/:sort" element={<ArticleList />} />
         <Route path="/article/:article_id" element={<ArticleView />} />
-        {/*   <Route path="/:topic" element={<ArticleList />} /> */}
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
       <Footer />
     </Box>
