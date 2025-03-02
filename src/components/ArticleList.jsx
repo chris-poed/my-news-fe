@@ -16,12 +16,10 @@ import { useParams } from "react-router-dom";
 const ArticleList = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedSort, setSelectedSort] = useState("date");
+  const [selectedSort, setSelectedSort] = useState("created_at");
   let { topic } = useParams();
-  console.log(selectedSort, "<----selectedSort");
 
   const handleSort = (event) => {
-    console.log(event.target.value);
     setSelectedSort(event.target.value);
   };
 
@@ -36,6 +34,12 @@ const ArticleList = () => {
   if (isLoading) {
     return (
       <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+        <Skeleton
+          animation="wave"
+          height={100}
+          width="90%"
+          style={{ margin: 3 }}
+        />
         {Array.from(new Array(9)).map((item, index) => (
           <Card key={index} sx={{ width: 400, height: 310, margin: 3 }}>
             <Skeleton
@@ -67,12 +71,16 @@ const ArticleList = () => {
       <Box
         sx={{
           display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "right",
+          flexWrap: "nowrap",
+          justifyContent: "space-between",
           marginTop: 3,
           marginRight: 3,
+          marginLeft: 3,
         }}
       >
+        <Typography variant="h5">
+          {!topic ? <>ALL ARTICLES</> : <>{topic.toUpperCase()}</>}
+        </Typography>
         <FormControl size="small">
           <InputLabel variant="standard" htmlFor="sort-selector">
             Sort by
@@ -85,9 +93,9 @@ const ArticleList = () => {
               id: "sort-selector",
             }}
           >
-            <option value="date">Date (default)</option>
+            <option value="created_at">Date (default)</option>
             <option value="votes">Votes</option>
-            <option value="comments">Comments</option>
+            <option value="comment_count">Comments</option>
           </NativeSelect>
         </FormControl>
       </Box>
