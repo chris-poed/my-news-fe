@@ -7,12 +7,11 @@ const newsApi = axios.create({
 });
 
 export const getArticles = (topic, sort) => {
-  console.log(sort, "<----sort in API");
   return newsApi
     .get("/articles", {
       params: {
         topic: topic,
-        sort: sort,
+        sort_by: sort,
       },
     })
     .then((response) => {
