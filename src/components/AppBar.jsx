@@ -135,6 +135,15 @@ function NewsAppBar() {
                   ))}
                 </List>
                 <Divider />
+                <Link to={`/about`} style={{ textDecoration: "none" }}>
+                  <ListItemButton>
+                    <ListItemText
+                      primary="About this page"
+                      sx={{ marginTop: 2, marginBottom: 2 }}
+                    />
+                  </ListItemButton>
+                </Link>
+                <Divider />
               </Box>
             </Drawer>
           </Box>
@@ -185,6 +194,19 @@ function NewsAppBar() {
                 </Button>
               </Link>
             ))}
+            <Link to={`/about`} style={{ textDecoration: "none" }}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  underline: "none",
+                }}
+              >
+                About this page
+              </Button>
+            </Link>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
